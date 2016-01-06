@@ -18,11 +18,13 @@ clean:
 test:
 	echo $(assembly_source_files)
 
+all: kernel
+
 kernel: $(kernel)
 
 iso: $(iso)
 
-run:
+run: $(iso)
 	qemu-system-x86_64 -cdrom $(iso) -curses # curses because I am running in nongraphical vagrant vm
 
 $(kernel): $(assembly_object_files) $(linker_script)
