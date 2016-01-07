@@ -150,6 +150,7 @@ enable_paging:
 	ret
 
 ; Check for SSE and enable it. If it's not supported throw error "a".
+; From http://wiki.osdev.org/SSE#Checking_for_SSE
 set_up_SSE:
 	;; check for SSE
 	mov eax, 0x1
