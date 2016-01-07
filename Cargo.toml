@@ -1,0 +1,10 @@
+[package]
+name = "blog_os"
+version = "0.1.0"
+authors = ["Jonathan Fok kan <jfokkan@gmail.com>"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+rlibc = "0.1.4"

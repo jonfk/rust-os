@@ -69,5 +69,10 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y nasm
     sudo apt-get install -y xorriso
     sudo apt-get install -y qemu
+    sudo apt-get install -y git
+    curl -f -L https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh -O
+    sudo sh blastoff.sh --yes
+    multirust update stable
+    multirust update nightly
   SHELL
 end
