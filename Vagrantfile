@@ -71,8 +71,10 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y qemu
     sudo apt-get install -y git
     curl -f -L https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh -O
-    sudo sh blastoff.sh --yes
-    multirust update stable
-    multirust update nightly
+    su vagrant -c "sudo sh blastoff.sh --yes"
+    chown vagrant:vagrant -R /home/vagrant/.multirust
+    chown vagrant:vagrant -R /home/vagrant/.multirust/*
+    su vagrant -c "multirust update nightly"
   SHELL
+
 end
