@@ -9,17 +9,21 @@ extern crate spin;
 mod vga_buffer;
 
 #[no_mangle]
-pub extern fn rust_main() {
- // ATTENTION: we have a very small stack and no guard page
+pub extern "C" fn rust_main() {
+    // ATTENTION: we have a very small stack and no guard page
 
     use core::fmt::Write;
     println!("Hello World! {}", 2);
 
-    loop{}
+    loop {}
 }
 
 // These functions and traits are used by the compiler, but not
 // for a bare-bones hello world. These are normally
 // provided by libstd.
-#[lang = "eh_personality"] extern fn eh_personality() {}
-#[lang = "panic_fmt"] extern fn panic_fmt() -> ! {loop{}}
+#[lang = "eh_personality"]
+extern "C" fn eh_personality() {}
+#[lang = "panic_fmt"]
+extern "C" fn panic_fmt() -> ! {
+    loop {}
+}
