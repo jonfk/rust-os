@@ -1,5 +1,9 @@
 use core::ptr::Unique;
-use core::str;
+//use core::str;
+use core::fmt;
+use core::fmt::Write;
+
+
 
 pub fn print_something() {
     let mut writer = Writer {
@@ -9,7 +13,9 @@ pub fn print_something() {
     };
 
     writer.write_byte(b'H');
-    writer.write_str(str::from_utf8(b"Test string").unwrap());
+    //writer.write_str(str::from_utf8(b"Test string").unwrap());
+    writer.write_str("ello! ");
+    write!(writer, "The numbers are {} and {}", 42, 1.0/3.0);
 }
 
 #[repr(u8)]
@@ -73,11 +79,14 @@ impl Writer {
     }
 
     fn new_line(&mut self) {/* TODO */}
+}
 
-    pub fn write_str(&mut self, s: &str) {
+impl fmt::Write for Writer {
+    fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
-            self.write_byte(byte)
+          self.write_byte(byte)
         }
+        Ok(())
     }
 }
 
